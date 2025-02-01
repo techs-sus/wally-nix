@@ -1,0 +1,44 @@
+{
+  "nodes": {
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1738297584,
+        "narHash": "sha256-AYvaFBzt8dU0fcSK2jKD0Vg23K2eIRxfsVXIPCW9a0E=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "9189ac18287c599860e878e905da550aa6dec1cd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "wallySource": "wallySource"
+      }
+    },
+    "wallySource": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1735854515,
+        "narHash": "sha256-LuDACyD3gW16/Y+YMKjcnHGiTA1W8zJGOXobBebA0c4=",
+        "owner": "UpliftGames",
+        "repo": "wally",
+        "rev": "2c928d9dcd0cee67bd5869d44970ad3e70e9fb58",
+        "type": "github"
+      },
+      "original": {
+        "owner": "UpliftGames",
+        "repo": "wally",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

@@ -1,24 +1,28 @@
 {
+  nixConfig = {
+    # Adapted From: https://github.com/divnix/digga/blob/main/examples/devos/flake.nix#L4
+    extra-substituters = "https://techs-sus-wally-nix.cachix.org";
+    extra-trusted-public-keys = "techs-sus-wally-nix.cachix.org-1:hOye+Fj1heELMgDJOzDoQnFLsQA/kVN0ZVRnZmsAyB4=";
+  };
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    # if the source code isnt yours, you could import it here
-    # and then pass it as an argument to callPackage below
     wallySource = {
       flake = false;
       url = "github:UpliftGames/wally";
     };
   };
+
   outputs = {self, nixpkgs, ...}@inputs: let
-    forAllSys = nixpkgs.lib.genAttrs nixpkgs.lib.platforms.all;
+    forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.platforms.all;
   in {
-    packages = forAllSys (system: let
+    packages = forAllSystems (system: let
       pkgs = import nixpkgs { inherit system; };
-      wally = pkgs.callPackage ./. {
-        inherit (inputs) wallySource;
-        pkgs = import nixpkgs { inherit system; };
-      };
     in {
-      default = wally;
+      default = pkgs.callPackage ./. {
+        inherit (inputs) wallySource;
+        inherit pkgs;
+      };
     });
   };
 }

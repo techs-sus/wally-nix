@@ -8,7 +8,7 @@
 }:
 rustPlatform.buildRustPackage {
   pname = "wally";
-  version = "0.3.2";
+  version = wallySource.rev;
 
   src = wallySource;
 
@@ -19,9 +19,11 @@ rustPlatform.buildRustPackage {
     pkgs.pkg-config
   ];
 
-  buildInputs = with pkgs; [
-    openssl
+  buildInputs = [
+    pkgs.openssl
   ];
+
+  cargoBuildFlags = "--package wally";
 
   meta = {
     description = "Wally is a modern package manager for Roblox projects inspired by Cargo";
